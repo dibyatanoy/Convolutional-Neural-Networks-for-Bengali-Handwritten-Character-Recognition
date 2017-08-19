@@ -157,7 +157,7 @@ def deeper_inception_conv_net():
         inception1x1_post_maxpool = tf.nn.conv2d(inception3x3_maxpool, inception1x1_post_mxpool_wts, [1, 1, 1, 1], padding='SAME')
         inception1x1_post_maxpool = tf.nn.relu(inception1x1_post_maxpool + post_maxpool_biases)
 
-        concat_filter = tf.concat(3, [inception1x1_relu, inception3x3_relu, inception5x5_relu, inception1x1_post_maxpool])
+        concat_filter = tf.concat([inception1x1_relu, inception3x3_relu, inception5x5_relu, inception1x1_post_maxpool], 3)
         concat_maxpooled = tf.nn.max_pool(concat_filter, [1, 2, 2, 1], [1, 2, 2, 1], padding='SAME')
         shape = concat_maxpooled.get_shape().as_list()
 
